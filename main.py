@@ -9,7 +9,8 @@ from kivy.uix.button import Button
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
-        self.cols = 1
+        
+        self.cols = 2
 
         self.inside = GridLayout()
         self.inside.cols = 2
@@ -22,9 +23,9 @@ class MyGrid(GridLayout):
         self.lastName = TextInput(multiline=False)
         self.inside.add_widget(self.lastName)
 
-        self.inside.add_widget(Label(text="Email: "))
-        self.email = TextInput(multiline=False)
-        self.inside.add_widget(self.email)
+        self.inside.add_widget(Label(text="Current Occupation: "))
+        self.occup = TextInput(multiline=False)
+        self.inside.add_widget(self.occup)
 
         self.add_widget(self.inside)
 
@@ -35,13 +36,14 @@ class MyGrid(GridLayout):
     def pressed(self, instance):
         name = self.name.text
         last = self.lastName.text
-        email = self.email.text
+        occup = self.occup.text
 
-        print("Name:", name, "Last Name:", last, "Email:", email)
-        self.name.text = ""
+        print("Name:", name, "Last Name:", last, "Current Occupation:", occup) #returns results entered
+        self.name.text = "" #resetting interactions
         self.lastName.text = ""
-        self.email.text = ""
+        self.occup.text = ""
 
+#leaf -me - alone
 class MyApp(App):
     def build(self):
         return MyGrid()
