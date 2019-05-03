@@ -25,7 +25,10 @@ class MyGrid(GridLayout):
         self.inside.add_widget(Label(text="Email: "))
         self.email = TextInput(multiline=False)
         self.inside.add_widget(self.email)
-
+        
+        self.inside.add_widget(Label(text="Phone Number: "))
+        self.phone = TextInput(multiline=False)
+        self.inside.add_widget(self.phone)
         self.add_widget(self.inside)
 
         self.submit = Button(text="Submit", font_size=40)
@@ -36,11 +39,13 @@ class MyGrid(GridLayout):
         name = self.name.text
         last = self.lastName.text
         email = self.email.text
+        phone = self.phone.text
 
-        print("Name:", name, "Last Name:", last, "Email:", email)
+        print("Name:", name, "Last Name:", last, "Email:", email, "Phone: ", phone) #return values submitted
         self.name.text = ""
         self.lastName.text = ""
         self.email.text = ""
+        self.phone.text = ""
 
 class MyApp(App):
     def build(self):
