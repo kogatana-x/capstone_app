@@ -9,7 +9,7 @@ from kivy.uix.button import Button
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
-        self.cols = 1
+        self.cols = 2
 
         self.inside = GridLayout()
         self.inside.cols = 2
