@@ -51,8 +51,6 @@ class MyApp(App):
     def build(self):
         return MyGrid()
 
-class RootLayout(GridLayout):
-    pass
 
 if __name__ == "__main__":
     MyApp().run()
