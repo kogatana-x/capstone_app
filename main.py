@@ -50,7 +50,7 @@ class MyGrid(GridLayout):
         field2_text = "Last Name:"
         field3_text = "Email Address: "
         field4_text = "Phone Number: "
-        
+
         print(field1_text," ", field1, field2_text," ", field2, field3_text," ", field3, field4_text," ", field4) #return values submitted
         #resetting interactions
 
