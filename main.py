@@ -46,6 +46,7 @@ class MyGrid(GridLayout):
         field2 = self.field2.text
         field3 = self.field3.text
         field4 = self.field4.text
+
         field1_text = "First Name:"
         field2_text = "Last Name:"
         field3_text = "Email Address: "
