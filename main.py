@@ -11,7 +11,7 @@ class MyGrid(GridLayout):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
 <<<<<<< HEAD
-        
+
 =======
 >>>>>>> theDarkFright-patch-4
         self.cols = 2
@@ -22,7 +22,7 @@ class MyGrid(GridLayout):
         field1_text = "First Name:"
         field2_text = "Last Name:"
         field3_text = "Email Address: "
-        field4_text = "Hiya: "
+        field4_text = "Phone Number: "
 
         self.inside.add_widget(Label(text=field1_text))
         self.field1 = TextInput(multiline=False)
