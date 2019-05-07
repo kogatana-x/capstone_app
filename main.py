@@ -18,7 +18,7 @@ class MyGrid(GridLayout):
         field1_text = "First Name:"
         field2_text = "Last Name:"
         field3_text = "Email Address: "
-        field4_text = "Phone Number: "
+        field4_text = "Hiya: "
 
         self.inside.add_widget(Label(text=field1_text))
         self.field1 = TextInput(multiline=False)
