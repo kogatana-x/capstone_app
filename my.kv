@@ -16,12 +16,18 @@
                 size_hint: 0.8, 0.2
                 pos_hint: {"x":0.1, "top":1}
                 font_size: (root.width**2 + root.height**2) / 14**4
+                text_size:self.size
+                halign:'left'
+                valign:'middle'
 
             Label:
                 size_hint: 0.5,0.12
                 pos_hint: {"x":0, "top":0.8}
                 text: "Name: "
                 font_size: (root.width**2 + root.height**2) / 14**4
+                text_size:self.size
+                halign:'left'
+                valign:'middle'
 
             TextInput:
                 pos_hint: {"x":0.5, "top":0.8}
@@ -35,6 +41,9 @@
                 pos_hint: {"x":0, "top":0.8-0.13}
                 text: "Email: "
                 font_size: (root.width**2 + root.height**2) / 14**4
+                text_size:self.size
+                halign:'left'
+                valign:'middle'
 
             TextInput:
                 pos_hint: {"x":0.5, "top":0.8-0.13}
@@ -48,6 +57,9 @@
                 pos_hint: {"x":0, "top":0.8-0.13*2}
                 text: "Password: "
                 font_size: (root.width**2 + root.height**2) / 14**4
+                text_size:self.size
+                halign:'left'
+                valign:'middle'
 
             TextInput:
                 pos_hint: {"x":0.5, "top":0.8-0.13*2}
@@ -89,6 +101,9 @@
             font_size: (root.width**2 + root.height**2) / 13**4
             pos_hint: {"x":0.1, "top":0.9}
             size_hint: 0.35, 0.15
+            text_size:self.size
+            halign:'left'
+            valign:'middle'
 
         TextInput:
             id: email
@@ -102,6 +117,9 @@
             font_size: (root.width**2 + root.height**2) / 13**4
             pos_hint: {"x":0.1, "top":0.7}
             size_hint: 0.35, 0.15
+            text_size:self.size
+            halign:'left'
+            valign:'middle'
 
         TextInput:
             id: password
@@ -136,24 +154,39 @@
     created:created
 
     FloatLayout:
-
+        Label:
+            pos_hint:{"x": 0, "top":1}
+            size_hint:0.8, 0.2
+            text: "Account Information: "
+            text_size:self.size
+            halign:'left'
+            valign:'middle'
         Label:
             id: n
             pos_hint:{"x": 0.1, "top":0.9}
             size_hint:0.8, 0.2
             text: "Account Name: "
+            text_size:self.size
+            halign:'left'
+            valign:'middle'
 
         Label:
             id: email
             pos_hint:{"x": 0.1, "top":0.8}
             size_hint:0.8, 0.2
             text: "Email: "
+            text_size:self.size
+            halign:'left'
+            valign:'middle'
 
         Label:
             id: created
             pos_hint:{"x": 0.1, "top":0.7}
             size_hint:0.8, 0.2
             text: "Created: "
+            text_size:self.size
+            halign:'left'
+            valign:'middle'    
 
         Button:
             pos_hint:{"x":0.2, "y": 0.3}
@@ -178,12 +211,18 @@
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "top":1}
         font_size: (root.width**2 + root.height**2) / 14**4
+        text_size:self.size
+        halign:'left'
+        valign:'middle'
 
     Label:
         size_hint: 0.5,0.12
         pos_hint: {"x":0, "top":0.8}
         text: "Phone Number: "
         font_size: (root.width**2 + root.height**2) / 14**4
+        text_size:self.size
+        halign:'left'
+        valign:'middle'
 
     TextInput:
         pos_hint: {"x":0.5, "top":0.8}
@@ -196,6 +235,9 @@
         pos_hint: {"x":0, "top":0.7}
         text: "Highest Level of Schooling: "
         font_size: (root.width**2 + root.height**2) / 14**4
+        text_size:self.size
+        halign:'left'
+        valign:'middle'
 
     TextInput:
         pos_hint: {"x":0.5, "top":0.7}
@@ -210,5 +252,14 @@
         text: "Update"
         on_release:
             root.manager.transition.direction = "right"
-            root.loginBtn()
+            root.update()
+
 <HomeScreen>:
+    Button:
+        pos_hint:{"x":0.4,"y":0.1}
+        size_hint: 0.2, 0.05
+        font_size: (root.width**2 + root.height**2) / 17**4
+        text: "Login"
+        on_release:
+            root.manager.transition.direction = "up"
+            root.is_done()

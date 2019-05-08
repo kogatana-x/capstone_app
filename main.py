@@ -9,6 +9,8 @@ from kivy.uix.label import Label
 from database import DataBase
 from kivy.core.window import Window
 from kivy.animation import Animation
+from kivy.graphics import Rectangle
+
 
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
@@ -70,8 +72,10 @@ class ResumeLoaderWindow(Screen):
         else:
             invalidInput()
 
+
 class HomeScreen(Screen):
-    #"loading screen"
+    def is_done(self):
+        sm.current="login"
 
 class MainWindow(Screen):
     n = ObjectProperty(None)
