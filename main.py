@@ -1,53 +1,132 @@
-import kivy
+# main.py
+
 from kivy.app import App
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
+from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
+from database import DataBase
+from kivy.core.window import Window
+from kivy.animation import Animation
+
+class CreateAccountWindow(Screen):
+    namee = ObjectProperty(None)
+    email = ObjectProperty(None)
+    password = ObjectProperty(None)
+
+    def submit(self):
+        if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
+            if self.password != "":
+                db.add_user(self.email.text, self.password.text, self.namee.text)
+
+                self.reset()
+
+                sm.current = "login"
+            else:
+                invalidForm()
+        else:
+            invalidForm()
+
+    def login(self):
+        self.reset()
+        sm.current = "login"
+
+    def reset(self):
+        self.email.text = ""
+        self.password.text = ""
+        self.namee.text = ""
 
 
-class MyGrid(GridLayout):
-    def __init__(self, **kwargs):
-        super(MyGrid, self).__init__(**kwargs)
-        
-        self.cols = 2
+class LoginWindow(Screen):
+    email = ObjectProperty(None)
+    password = ObjectProperty(None)
 
-        self.inside = GridLayout()
-        self.inside.cols = 2
+    def loginBtn(self):
+        if db.validate(self.email.text, self.password.text):
+            MainWindow.current = self.email.text
+            self.reset()
+            sm.current = "main"
+        else:
+            invalidLogin()
 
-        self.inside.add_widget(Label(text="First Name: "))
-        self.name = TextInput(multiline=False)
-        self.inside.add_widget(self.name)
+    def createBtn(self):
+        self.reset()
+        sm.current = "create"
 
-        self.inside.add_widget(Label(text="Last Name: "))
-        self.lastName = TextInput(multiline=False)
-        self.inside.add_widget(self.lastName)
+    def reset(self):
+        self.email.text = ""
+        self.password.text = ""
 
-        self.inside.add_widget(Label(text="Current Occupation: "))
-        self.occup = TextInput(multiline=False)
-        self.inside.add_widget(self.occup)
+class ResumeLoaderWindow(Screen):
+    def builder(self):
+        self.reset()
+        sm.current = "builder"
+    def update(self):
+        if db.validate(self.phoneno.text, self.highed.text):
+            MainWindow.current = self.email.text #change this to match -> db takes updated info and slaps it on same line
+            self.reset()
+            sm.current = "main"
+        else:
+            invalidInput()
 
-        self.add_widget(self.inside)
+class HomeScreen(Screen):
+    #"loading screen"
 
-        self.submit = Button(text="Submit", font_size=40)
-        self.submit.bind(on_press=self.pressed)
-        self.add_widget(self.submit)
+class MainWindow(Screen):
+    n = ObjectProperty(None)
+    created = ObjectProperty(None)
+    email = ObjectProperty(None)
+    current = ""
+    Window.clearcolor = (.2,.7,.6,1)
 
-    def pressed(self, instance):
-        name = self.name.text
-        last = self.lastName.text
-        occup = self.occup.text
+    def logOut(self):
+        sm.current = "login"
 
-        print("Name:", name, "Last Name:", last, "Current Occupation:", occup) #returns results entered
-        self.name.text = "" #resetting interactions
-        self.lastName.text = ""
-        self.occup.text = ""
+    def on_enter(self, *args):
+        password, name, created = db.get_user(self.current)
+        self.n.text = "Account Name: " + name
+        self.email.text = "Email: " + self.current
+        self.created.text = "Created On: " + created
 
-#leaf -me - alone
-class MyApp(App):
+
+
+
+class WindowManager(ScreenManager):
+    pass
+
+
+def invalidLogin():
+    pop = Popup(title='Invalid Login',
+                  content=Label(text='Invalid username or password.'),
+                  size_hint=(None, None), size=(400, 400))
+    pop.open()
+
+
+def invalidForm():
+    pop = Popup(title='Invalid Form',
+                  content=Label(text='Please fill in all inputs with valid information.'),
+                  size_hint=(None, None), size=(400, 400))
+
+    pop.open()
+
+
+kv = Builder.load_file("my.kv")
+
+sm = WindowManager()
+db = DataBase("users.txt")
+
+screens = [HomeScreen(name="loading"), LoginWindow(name="login"), CreateAccountWindow(name="create"),MainWindow(name="main"),ResumeLoaderWindow(name="builder")]
+for screen in screens:
+    sm.add_widget(screen)
+
+sm.current = "loading"
+
+
+class MyMainApp(App):
     def build(self):
-        return MyGrid()
+        return sm
 
 
 if __name__ == "__main__":
-    MyApp().run()
+    MyMainApp().run()
