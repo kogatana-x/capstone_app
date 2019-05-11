@@ -186,7 +186,7 @@
             text: "Created: "
             text_size:self.size
             halign:'left'
-            valign:'middle'    
+            valign:'middle'
 
         Button:
             pos_hint:{"x":0.2, "y": 0.3}
@@ -255,6 +255,19 @@
             root.update()
 
 <HomeScreen>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: root.angle
+            axis: 0, 0, 1
+            origin: root.center
+    canvas.after:
+        PopMatrix
+    Image:
+        size_hint: None, None
+        size: 100, 100
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    
     Button:
         pos_hint:{"x":0.4,"y":0.1}
         size_hint: 0.2, 0.05

@@ -10,7 +10,8 @@ from database import DataBase
 from kivy.core.window import Window
 from kivy.animation import Animation
 from kivy.graphics import Rectangle
-
+from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import NumericProperty
 
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
@@ -74,8 +75,25 @@ class ResumeLoaderWindow(Screen):
 
 
 class HomeScreen(Screen):
+    def build(self):
+        return Loading()
+        
     def is_done(self):
         sm.current="login"
+
+
+class Loading(FloatLayout):
+    angle = NumericProperty(0)
+    def __init__(self, **kwargs):
+        super(Loading, self).__init__(**kwargs)
+        anim = Animation(angle = 360, duration=2)
+        anim += Animation(angle = 360, duration=2)
+        anim.repeat = True
+        anim.start(self)
+
+    def on_angle(self, item, angle):
+        if angle == 360:
+            item.angle = 0
 
 class MainWindow(Screen):
     n = ObjectProperty(None)
