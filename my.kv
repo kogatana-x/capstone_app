@@ -47,7 +47,7 @@
 
             TextInput:
                 pos_hint: {"x":0.5, "top":0.8-0.13}
-                size_hint: 0.4, 0.12
+                size_hint: 0.2, 0.12
                 id: email
                 multiline: False
                 font_size: (root.width**2 + root.height**2) / 14**4
@@ -255,19 +255,11 @@
             root.update()
 
 <HomeScreen>:
-    canvas.before:
-        PushMatrix
-        Rotate:
-            angle: root.angle
-            axis: 0, 0, 1
-            origin: root.center
-    canvas.after:
-        PopMatrix
     Image:
+        source: 'download.jpg'
         size_hint: None, None
         size: 100, 100
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-    
+        pos_hint:{"x":0.1,"y":2}
     Button:
         pos_hint:{"x":0.4,"y":0.1}
         size_hint: 0.2, 0.05
