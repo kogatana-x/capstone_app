@@ -56,21 +56,6 @@ class LoginWindow(Screen):
         self.email.text = ""
         self.password.text = ""
 
-class ResumeLoaderWindow(Screen):
-    def builder(self):
-        self.reset()
-        sm.current = "builder"
-
-    #event upon submit new info
-    def update(self):
-        if db.validate(self.email.text, self.phoneno.text, self.highed.text):
-            db.update_user(self.email.text, self.phoneno.text, self.highed.text)
-            self.reset()
-            sm.current = "main"
-        else:
-            invalidInput()
-
-
 class HomeScreen(Screen):
     def is_done(self):
         sm.current="login"
@@ -118,7 +103,7 @@ kv = Builder.load_file("my.kv")
 sm = WindowManager()
 db = DataBase("users.txt")
 
-screens = [HomeScreen(name="loading"), LoginWindow(name="login"), CreateAccountWindow(name="create"),MainWindow(name="main"),ResumeLoaderWindow(name="builder")]
+screens = [HomeScreen(name="loading"), LoginWindow(name="login"), CreateAccountWindow(name="create"),MainWindow(name="main")]
 for screen in screens:
     sm.add_widget(screen)
 
