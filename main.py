@@ -101,12 +101,10 @@ class WindowManager(ScreenManager):
 
 
 def invalidLogin():
-    pop = Popup(title='Invalid Login',
-                  content=Label(text='Invalid username or password.'),
-                  size_hint=(None, None), size=(400, 400))
+    pop = Popup(title='Invalid Login',content=Label(text='Invalid username or password.'),size_hint=(None, None), size=(400, 400))
     pop.open()
 
-        self.cols = 2
+    self.cols = 2
 
 
 def invalidForm():
@@ -114,18 +112,18 @@ def invalidForm():
                   content=Label(text='Please fill in all inputs with valid information.'),
                   size_hint=(None, None), size=(400, 400))
 
-        self.inside.add_widget(Label(text=field3_text))
-        self.field3 = TextInput(multiline=False)
-        self.inside.add_widget(self.field3)
+    self.inside.add_widget(Label(text=field3_text))
+    self.field3 = TextInput(multiline=False)
+    self.inside.add_widget(self.field3)
 
-        self.inside.add_widget(Label(text=field4_text))
-        self.field4 = TextInput(multiline=False)
-        self.inside.add_widget(self.field4)
-        self.add_widget(self.inside)
+    self.inside.add_widget(Label(text=field4_text))
+    self.field4 = TextInput(multiline=False)
+    self.inside.add_widget(self.field4)
+    self.add_widget(self.inside)
 
-        self.next = Button(text="Next", font_size=40)
-        self.next.bind(on_press=self.pressedNext)
-        self.add_widget(self.next)
+    self.next = Button(text="Next", font_size=40)
+    self.next.bind(on_press=self.pressedNext)
+    self.add_widget(self.next)
 
     def pressedNext(self, instance):
         field1 = self.field1.text
