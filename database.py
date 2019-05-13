@@ -1,4 +1,3 @@
-
 import datetime
 
 class DataBase:
@@ -32,15 +31,16 @@ class DataBase:
         else:
             print("Email exists already")
             return -1
-            
-    def update_user(self, email,education, phoneno):
-        if email.strip() in self.users:
-            self.users[email.strip()] += (education.strip(), phoneno.strip())
-            self.save()
-            return 1
-        else:
+
+    def update_user(self, email, education, phoneno):
+        if email.strip() not in self.users:
             print("Server Side Error")
             return -1
+        else:
+            self.users[email.strip()] = (education.strip(), phoneno.strip())
+            self.save()
+            return 1
+
 
     def validate(self, email, password):
         if self.get_user(email) != -1:

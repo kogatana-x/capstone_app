@@ -22,7 +22,7 @@
 
             Label:
                 size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top":0.8}
+                pos_hint: {"x":0.2, "top":0.8}
                 text: "Name: "
                 font_size: (root.width**2 + root.height**2) / 14**4
                 text_size:self.size
@@ -30,7 +30,7 @@
                 valign:'middle'
 
             TextInput:
-                pos_hint: {"x":0.5, "top":0.8}
+                pos_hint: {"x":0.4, "top":0.8}
                 size_hint: 0.4, 0.12
                 id: namee
                 multiline: False
@@ -38,7 +38,7 @@
 
             Label:
                 size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top":0.8-0.13}
+                pos_hint: {"x":0.2, "top":0.8-0.13}
                 text: "Email: "
                 font_size: (root.width**2 + root.height**2) / 14**4
                 text_size:self.size
@@ -46,7 +46,7 @@
                 valign:'middle'
 
             TextInput:
-                pos_hint: {"x":0.5, "top":0.8-0.13}
+                pos_hint: {"x":0.4, "top":0.8-0.13}
                 size_hint: 0.2, 0.12
                 id: email
                 multiline: False
@@ -54,7 +54,7 @@
 
             Label:
                 size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top":0.8-0.13*2}
+                pos_hint: {"x":0.2, "top":0.8-0.13*2}
                 text: "Password: "
                 font_size: (root.width**2 + root.height**2) / 14**4
                 text_size:self.size
@@ -62,7 +62,7 @@
                 valign:'middle'
 
             TextInput:
-                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                pos_hint: {"x":0.4, "top":0.8-0.13*2}
                 size_hint: 0.4, 0.12
                 id: passw
                 multiline: False
@@ -86,7 +86,6 @@
             on_release:
                 root.manager.transition.direction = "left"
                 root.submit()
-
 
 <LoginWindow>:
     name: "login"
@@ -147,7 +146,6 @@
                 root.manager.transition.direction = "right"
                 root.createBtn()
 
-
 <MainWindow>:
     n: n
     email: email
@@ -155,34 +153,38 @@
 
     FloatLayout:
         Label:
-            pos_hint:{"x": 0, "top":1}
+            pos_hint:{"x": 0.1, "top":1}
             size_hint:0.8, 0.2
             text: "Account Information: "
             text_size:self.size
+            font_size: (root.width**2 + root.height**2) / 13**4
             halign:'left'
             valign:'middle'
         Label:
             id: n
-            pos_hint:{"x": 0.1, "top":0.9}
+            pos_hint:{"x": 0.2, "top":0.9}
             size_hint:0.8, 0.2
             text: "Account Name: "
             text_size:self.size
+            font_size: (root.width**2 + root.height**2) / 14**4
             halign:'left'
             valign:'middle'
 
         Label:
             id: email
-            pos_hint:{"x": 0.1, "top":0.8}
+            pos_hint:{"x": 0.2, "top":0.8}
             size_hint:0.8, 0.2
             text: "Email: "
+            font_size: (root.width**2 + root.height**2) / 14**4
             text_size:self.size
             halign:'left'
             valign:'middle'
 
         Label:
             id: created
-            pos_hint:{"x": 0.1, "top":0.7}
-            size_hint:0.8, 0.2
+            pos_hint:{"x": 0.2, "top":0.7}
+            size_hint:0.8,0.2
+            font_size: (root.width**2 + root.height**2) / 14**4
             text: "Created: "
             text_size:self.size
             halign:'left'
@@ -190,61 +192,88 @@
 
         Button:
             pos_hint:{"x":0.2, "y": 0.3}
-            size_hint:0.6,0.2
+            size_hint:0.6,0.1
             text: "Add Information"
+            font_size: (root.width**2 + root.height**2) / 15**4
+            text_size:self.size
+            halign:'center'
+            valign:'middle'
+
             on_release:
                 app.root.current = "builder"
                 root.manager.transition.direction = "right"
         Button:
-            pos_hint:{"x":0.2, "y": 0.2}
+            pos_hint:{"x":0.2, "y": 0.1}
             size_hint:0.6,0.1
             text: "Log Out"
+            font_size: (root.width**2 + root.height**2) / 15**4
+            text_size:self.size
+            halign:'center'
+            valign:'middle'
             on_release:
                 app.root.current = "login"
                 root.manager.transition.direction = "down"
 
 <ResumeLoaderWindow>:
     name: "builder"
-    #vals:vals
+    #header
     Label:
         text: "Create a New Template"
         size_hint: 0.8, 0.2
-        pos_hint: {"x":0.1, "top":1}
+        pos_hint: {"x":0.05, "top":1}
         font_size: (root.width**2 + root.height**2) / 14**4
         text_size:self.size
         halign:'left'
         valign:'middle'
-
+    #email field
     Label:
         size_hint: 0.5,0.12
-        pos_hint: {"x":0, "top":0.8}
+        pos_hint: {"x":0.1, "top":0.8}
+        text: "Email Address: "
+        font_size: (root.width**2 + root.height**2) / 14**4
+        text_size:self.size
+        halign:'left'
+        valign:'middle'
+    TextInput:
+        pos_hint: {"x":0.5, "top":0.8}
+        size_hint: 0.4, 0.12
+        id: email
+        multiline: False
+        font_size: (root.width**2 + root.height**2) / 14**4
+
+    #phone # field
+    Label:
+        size_hint: 0.5,0.1
+        pos_hint: {"x":.1, "top":0.65}
         text: "Phone Number: "
         font_size: (root.width**2 + root.height**2) / 14**4
         text_size:self.size
         halign:'left'
         valign:'middle'
-
     TextInput:
-        pos_hint: {"x":0.5, "top":0.8}
-        size_hint: 0.4, 0.12
+        pos_hint: {"x":0.5, "top":0.65}
+        size_hint: 0.4, 0.1
         id: phoneno
         multiline: False
         font_size: (root.width**2 + root.height**2) / 14**4
+
+    #highest level of education
     Label:
         size_hint: 0.5,0.12
-        pos_hint: {"x":0, "top":0.7}
+        pos_hint: {"x":0.1, "top":0.5}
         text: "Highest Level of Schooling: "
         font_size: (root.width**2 + root.height**2) / 14**4
         text_size:self.size
         halign:'left'
         valign:'middle'
-
     TextInput:
-        pos_hint: {"x":0.5, "top":0.7}
-        size_hint: 0.4, 0.12
+        pos_hint: {"x":0.5, "top":0.5}
+        size_hint: 0.4, 0.1
         id: highed
         multiline: False
         font_size: (root.width**2 + root.height**2) / 14**4
+
+    #submit to database button
     Button:
         pos_hint:{"x":0.3,"y":0.18}
         size_hint: 0.4, 0.05
@@ -255,16 +284,19 @@
             root.update()
 
 <HomeScreen>:
-    Image:
-        source: 'download.jpg'
-        size_hint: None, None
-        size: 100, 100
-        pos_hint:{"x":0.1,"y":2}
+    Label:
+        size_hint: 0.5,0.12
+        pos_hint:{"x":0.25,"y":.5}
+        text: "Resume Builder App Version 0"
+        font_size: (root.width**2 + root.height**2) / 14**4
+        text_size:self.size
+        halign:'center'
+        valign:'middle'
     Button:
-        pos_hint:{"x":0.4,"y":0.1}
+        pos_hint:{"x":0.4,"y":0.3}
         size_hint: 0.2, 0.05
         font_size: (root.width**2 + root.height**2) / 17**4
-        text: "Login"
+        text: "Next"
         on_release:
             root.manager.transition.direction = "up"
             root.is_done()
