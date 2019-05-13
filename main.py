@@ -1,5 +1,3 @@
-# main.py
-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -9,8 +7,7 @@ from kivy.uix.label import Label
 from database import DataBase
 from kivy.core.window import Window
 from kivy.animation import Animation
-from kivy.graphics import Rectangle
-
+from kivy.uix.floatlayout import FloatLayout
 
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
@@ -39,7 +36,6 @@ class CreateAccountWindow(Screen):
         self.password.text = ""
         self.namee.text = ""
 
-
 class LoginWindow(Screen):
     email = ObjectProperty(None)
     password = ObjectProperty(None)
@@ -64,9 +60,11 @@ class ResumeLoaderWindow(Screen):
     def builder(self):
         self.reset()
         sm.current = "builder"
+
+    #event upon submit new info
     def update(self):
-        if db.validate(self.phoneno.text, self.highed.text):
-            MainWindow.current = self.email.text #change this to match -> db takes updated info and slaps it on same line
+        if db.validate(self.email.text, self.phoneno.text, self.highed.text):
+            db.update_user(self.email.text, self.phoneno.text, self.highed.text)
             self.reset()
             sm.current = "main"
         else:
@@ -82,7 +80,7 @@ class MainWindow(Screen):
     created = ObjectProperty(None)
     email = ObjectProperty(None)
     current = ""
-    Window.clearcolor = (.2,.7,.6,1)
+    Window.clearcolor = (.75,.75,.75,.4)
 
     def logOut(self):
         sm.current = "login"
