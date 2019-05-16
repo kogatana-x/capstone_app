@@ -8,16 +8,35 @@ from database import DataBase
 from kivy.core.window import Window
 from kivy.animation import Animation
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.dropdown import DropDown
+from kivy.uix.button import Button
+from kivy.base import runTouchApp
+
+
+class CustomDropDown(DropDown):
+    pass
 
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
     email = ObjectProperty(None)
     password = ObjectProperty(None)
+    dropdown = ObjectProperty(None)
+
+    def disp_dropdown():
+        dropdown = DropDown()
+        for index in range(10):
+            btn = Button(text='Value %d' % index, size_hint_y=None, height=44)
+            btn.bind(on_release=lambda btn: dropdown.select(btn.text))
+            dropdown.add_widget(btn)
+            mainbutton = Button(text='Hello', size_hint=(None, None))
+            mainbutton.bind(on_release=dropdown.open)
+            dropdown.bind(on_select=lambda instance, x: setattr(mainbutton, 'text', x))
+        runTouchApp(mainbutton)
 
     def submit(self):
         if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
             if self.password != "":
-                db.add_user(self.email.text, self.password.text, self.namee.text)
+                db.add_user(self.email.text, self.password.text, self.namee.text, self.dropdown.text)
 
                 self.reset()
 
@@ -35,6 +54,7 @@ class CreateAccountWindow(Screen):
         self.email.text = ""
         self.password.text = ""
         self.namee.text = ""
+
 
 class LoginWindow(Screen):
     email = ObjectProperty(None)
@@ -64,6 +84,7 @@ class MainWindow(Screen):
     n = ObjectProperty(None)
     created = ObjectProperty(None)
     email = ObjectProperty(None)
+    dropdown = ObjectProperty(None)
     current = ""
     Window.clearcolor = (.75,.75,.75,.4)
 
@@ -71,10 +92,11 @@ class MainWindow(Screen):
         sm.current = "login"
 
     def on_enter(self, *args):
-        password, name, created = db.get_user(self.current)
+        password, name, created, dropdown = db.get_user(self.current)
         self.n.text = "Account Name: " + name
         self.email.text = "Email: " + self.current
         self.created.text = "Created On: " + created
+        self.dropdown.text = "Selected Field: " + dropdown
 
 
 
@@ -112,6 +134,7 @@ sm.current = "loading"
 
 class MyMainApp(App):
     def build(self):
+
         return sm
 
 
