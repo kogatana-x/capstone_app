@@ -36,7 +36,7 @@ class CreateAccountWindow(Screen):
     def submit(self):
         if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
             if self.password != "":
-                db.add_user(self.email.text, self.password.text, self.namee.text, self.dropdown.text)
+                db.add_user(self.email.text, self.password.text, self.namee.text)
 
                 self.reset()
 
@@ -84,7 +84,6 @@ class MainWindow(Screen):
     n = ObjectProperty(None)
     created = ObjectProperty(None)
     email = ObjectProperty(None)
-    dropdown = ObjectProperty(None)
     current = ""
     Window.clearcolor = (.75,.75,.75,.4)
 
@@ -92,13 +91,10 @@ class MainWindow(Screen):
         sm.current = "login"
 
     def on_enter(self, *args):
-        password, name, created, dropdown = db.get_user(self.current)
+        password, name, created = db.get_user(self.current)
         self.n.text = "Account Name: " + name
         self.email.text = "Email: " + self.current
         self.created.text = "Created On: " + created
-        self.dropdown.text = "Selected Field: " + dropdown
-
-
 
 
 class WindowManager(ScreenManager):

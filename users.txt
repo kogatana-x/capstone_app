@@ -1,8 +1,4 @@
-reyIsCool@gmail.com;secpass123;Reynaldo;2019-05-07;reee;
-benisweird@hotmail.com;1;Ben;2019-05-07;eeeeee;
-email@gmail.com;password;Test 1;2019-05-07;readasdf;
-dweeb@gmail.com;1;Nick;2019-05-07;asfewasd;
-email@email.com;pass;Test 2;2019-05-07;asfdasfewa;
-@.com;;;2019-05-11;asfawefwaf;
-garbage@garbage.com;nick;Garbage;2019-05-14;asfeq;
-garbo@hotmail.com;i_<#_garbage;GARBAGE;2019-05-14;GARBAGE!;
+email@email.com;password;Test Person 1;2019-05-16
+email.address@email.com;;Test Person 2;2019-05-18
+email@yahoo.com;password;Test Person 1;2019-05-18
+reyIsCOOL@hotmail.com;password;Test Person;2019-05-18

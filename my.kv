@@ -4,7 +4,6 @@
     namee: namee
     email: email
     password: passw
-    dropdown: dropdown
 
     FloatLayout:
         cols:1
@@ -38,7 +37,7 @@
                 font_size: (root.width**2 + root.height**2) / 14**4
 
             Label:
-                size_hint: 0.5,0.12
+                size_hint: 0.5, 0.12
                 pos_hint: {"x":0.2, "top":0.67}
                 text: "Email: "
                 font_size: (root.width**2 + root.height**2) / 14**4
@@ -48,7 +47,7 @@
 
             TextInput:
                 pos_hint: {"x":0.4, "top":0.67}
-                size_hint: 0.2, 0.12
+                size_hint: 0.5, 0.12
                 id: email
                 multiline: False
                 font_size: (root.width**2 + root.height**2) / 14**4
@@ -70,22 +69,22 @@
                 password: True
                 font_size: (root.width**2 + root.height**2) / 14**4
 
-            Label:
-                size_hint: 0.5,0.12
-                pos_hint: {"x":0.2, "top":0.41}
-                text: "Select...: "
-                font_size: (root.width**2 + root.height**2) / 14**4
-                text_size:self.size
-                halign:'left'
-                valign:'middle'
+            #Label:
+                #size_hint: 0.5,0.12
+                #pos_hint: {"x":0.2, "top":0.41}
+                #text: "Select...: "
+                #font_size: (root.width**2 + root.height**2) / 14**4
+                #text_size:self.size
+                #halign:'left'
+                #valign:'middle'
 
-            TextInput:
-                pos_hint: {"x":0.4, "top":0.41}
-                size_hint: 0.4, 0.12
-                id: dropdown
-                multiline: False
-                password: False
-                font_size: (root.width**2 + root.height**2) / 14**4
+            #TextInput:
+                #pos_hint: {"x":0.4, "top":0.41}
+                #size_hint: 0.4, 0.12
+                #id: dropdown
+                #multiline: False
+                #password: False
+                #font_size: (root.width**2 + root.height**2) / 14**4
 
         Button:
             pos_hint:{"x":0.3,"y":0.05}
@@ -168,7 +167,6 @@
     n: n
     email: email
     created:created
-    dropdown: dropdown
 
     FloatLayout:
         Label:
@@ -209,15 +207,15 @@
             halign:'left'
             valign:'middle'
 
-            Label:
-                id: dropdown
-                pos_hint:{"x": 0.2, "top":0.6}
-                size_hint:0.8,0.2
-                font_size: (root.width**2 + root.height**2) / 14**4
-                text: "EXTRA: "
-                text_size:self.size
-                halign:'left'
-                valign:'middle'
+            #Label:
+                #id: dropdown
+                #pos_hint:{"x": 0.2, "top":0.6}
+                #size_hint:0.8,0.2
+                #font_size: (root.width**2 + root.height**2) / 14**4
+                #text: "EXTRA: "
+                #text_size:self.size
+                #halign:'left'
+                #valign:'middle'
         Button:
             pos_hint:{"x":0.2, "y": 0.1}
             size_hint:0.6,0.1
